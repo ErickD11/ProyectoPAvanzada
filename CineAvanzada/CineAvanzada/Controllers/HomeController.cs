@@ -26,5 +26,6 @@ namespace CineAvanzada.Controllers
 
 			return View();
 		}
-	}
+
+    }
 }

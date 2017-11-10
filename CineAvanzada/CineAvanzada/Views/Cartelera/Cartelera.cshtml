@@ -1,0 +1,17 @@
+﻿@model List<CineAvanzada.Models.Pelicula>
+@{
+    ViewBag.Title = "Carlera";
+}
+<h2>@ViewBag.Title.</h2>
+<br />
+@foreach (var Pelicula in Model)
+{
+    <h2>@Pelicula.Nombre</h2>
+    <h3>@Pelicula.Genero</h3>
+    <h3>@Pelicula.Director</h3>
+    <h3>@Pelicula.Duracion minutos</h3>
+    <h3>@Pelicula.FechaEstreno.Day / @Pelicula.FechaEstreno.Month / @Pelicula.FechaEstreno.Year</h3>
+    <h3>@Pelicula.Sinopsis</h3>
+    <br>
+    <br>
+}
