@@ -2,8 +2,155 @@
     ViewBag.Title = "Home Page";
 }
 
+
+<html lang="es">
+<head>
+	<meta charset="utf-8" /><!-- este meta sirve para definir el charset a utf-8 y asi mostrar caracteres del idioma español -->
+	<title>Tribulal supremo de elecciones</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body>
+
+	<div >
+		<img src="http://ndtvimages.yuppcdn.net/images/T_News_Cinema_Plus_292515.jpg" alt="Error" width="250" height="200">
+
+	</div>
+
+
+	<style>
+			ul {
+				margin-left: 670px;
+				
+			}
+
+				 ul li {
+					float: left;
+					margin-left: 5px;
+				}
+		
+	</style>
+
+	<div class="jumbotron" >
+		<h3>CARTELERA DISPONIBLE</h3>
+		
+		<ul class="nav nav-tabs tabsFormat" > 
+
+
+
+			<li class="digital  active " ><a class="" data-toggle="tab" href="" >Digital 2D</a></li>
+
+
+			<li class="real "><a data-toggle="tab" href="#real_3d">Real 3D</a></li>
+
+
+			<li class="dbox "><a data-toggle="tab" href="#dbox">DBOX</a></li>
+
+		</ul>
+		
+	</div>
+
+
+	<script>
+		$(document).ready(function () {
+
+			$("#owl-demo").owlCarousel({
+
+				autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+				items: 4,
+				itemsDesktop: [1199, 3],
+				itemsDesktopSmall: [979, 3]
+
+			});
+
+		});
+
+	</script>
+	<style>
+		#owl-demo .item {
+			margin: 3px;
+		}
+
+			#owl-demo .item img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+	</style>
+
+
+	
+	<div id="owl-demo">
+
+		<div class="item"><img src="assets/owl1.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl2.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl3.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl4.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl5.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl6.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl7.jpg" alt="Owl Image"></div>
+		<div class="item"><img src="assets/owl8.jpg" alt="Owl Image"></div>
+
+	</div>
+
+	
+	
+		
+
+	
+
+
+
+	<h3>Favor digitar el nombre de la Persona a consultar</h3>
+	<h5>(Acepta mayusculas y minusculas)</h5>
+		<form>
+			Nombre: <input type="text" name="txtNombre">
+			1er Apellido: <input type="text" name="txtApellido1">
+			2do Apellido: <input type="text" name="txtApellido2">
+		</form>
+		<p>
+			Si lo desea, seleccione el rango de fechas de nacimiento a buscar<br>
+			utilizados el siguiente formato DIA/MES/ANO
+		</p>
+		<p>
+			Desde: <input type="text" id="txtFechaDesde">
+			Hasta: <input type="text" id="txtFechaHasta">
+		</p>
+		<p>
+			Cantidad de Resultados a Mostrar:
+			<select id="IstCantidadResultados" disabled>
+				<option value="50">50</option>
+			</select>
+		</p>
+		<p>
+			Debe digitar la siguiente combinacion de caracteres en el espacio siguiente<br>
+			y presionar el boton CONSULTAR para realizar la consulta
+		</p>
+		<h5>6YR8Ny</h5>
+		<form>
+			<input type="text" name="txtCodigo">
+		</form>
+		<br>
+		</br>
+		<button id="btnConsultar" type="button">Consultar</button>
+		<h6>TRIBUNAL SUPREMO DE ELECCIONES.DERECHOS RESERVADOS</h6>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
 <div class="jumbotron">
     <h1>ASP.NET</h1>
+	<asp:Image id="Image1" runat="server" Height="59px" ImageUrl="~/imagenes/descarga.png" Width="190px" AlternateText="Imagen no disponible" ImageAlign="TextTop" />
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
