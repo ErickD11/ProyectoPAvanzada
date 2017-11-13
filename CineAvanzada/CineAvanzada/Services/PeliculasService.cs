@@ -13,10 +13,9 @@ namespace CineAvanzada.Services
     {
         public List<Pelicula> Peliculas()
         {
-         
             SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
             conexion.Open();
-            string sql = "select * from Peliculas";
+            string sql = "select * from Peliculas where idPelicula in(select Peliculas_idPelicula from Tandas)";
             SqlDataAdapter adp = new SqlDataAdapter(sql, conexion);
             DataSet datos = new DataSet();
             List<Pelicula> listaPeliculas = new List<Pelicula>();
@@ -31,7 +30,8 @@ namespace CineAvanzada.Services
                     Director = row[3].ToString(),
                     Duracion = Int32.Parse(row[4].ToString()),
                     FechaEstreno = Convert.ToDateTime(row[5].ToString()),
-                    Sinopsis = row[6].ToString()
+                    Sinopsis = row[6].ToString(),
+                    Imagen = row[7].ToString()
                 };
                 listaPeliculas.Add(newPelicula);
             }

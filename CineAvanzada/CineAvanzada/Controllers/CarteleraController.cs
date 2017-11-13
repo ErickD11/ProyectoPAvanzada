@@ -4,17 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CineAvanzada.Services;
+using CineAvanzada.Models;
 
 namespace CineAvanzada.Controllers
 {
     public class CarteleraController : Controller
     {
-        // GET: Cartelera
         public ActionResult Cartelera()
         {
-            var PeliculasService = new PeliculasService();
-            var model = PeliculasService.Peliculas();
+            var CarteleraService = new CarteleraService();
+            var model = CarteleraService.Cartelera();
             return View(model);
+        }
+
+        public ActionResult Compra(Tanda tanda)
+        {
+            return View(tanda);
         }
     }
 }

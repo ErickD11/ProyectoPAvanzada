@@ -1,17 +1,44 @@
-﻿@model List<CineAvanzada.Models.Pelicula>
+﻿@model CineAvanzada.Models.Cartelera
 @{
-    ViewBag.Title = "Carlera";
+    ViewBag.Title = "Carlera"; 
 }
-<h2>@ViewBag.Title.</h2>
-<br />
-@foreach (var Pelicula in Model)
-{
-    <h2>@Pelicula.Nombre</h2>
-    <h3>@Pelicula.Genero</h3>
-    <h3>@Pelicula.Director</h3>
-    <h3>@Pelicula.Duracion minutos</h3>
-    <h3>@Pelicula.FechaEstreno.Day / @Pelicula.FechaEstreno.Month / @Pelicula.FechaEstreno.Year</h3>
-    <h3>@Pelicula.Sinopsis</h3>
-    <br>
-    <br>
-}
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <br><br/>
+    <table class="table" align="center" border=1 frame="box" rules="all" cellspacing=1 cellpadding=1>
+        @foreach (var Pelicula in Model.Peliculas)
+        {
+            <tr>
+                <td style="border:hidden">
+                    <img src=@Pelicula.Imagen width="250" height="200" />
+                </td>
+                <td style="border:hidden">
+                    Nombre: @Pelicula.Nombre<br>
+                    Generos: @Pelicula.Genero<br>
+                    Director: @Pelicula.Director<br>
+                    Duracion: @Pelicula.Duracion minutos<br>
+                    Fecha de Estreno: @Pelicula.FechaEstreno.Day / @Pelicula.FechaEstreno.Month / @Pelicula.FechaEstreno.Year<br>
+                    Sinopsis:<br>@Pelicula.Sinopsis<br>
+                </td>
+                <td style="border:hidden">
+                    @foreach (var Tanda in Model.Tandas)
+                    {
+                        if (Tanda.Peliculas_idPelicula == Pelicula.idPelicula)
+                        {
+                            @Html.ActionLink(linkText: Tanda.Fecha.ToString(),actionName: "Compra",
+                            controllerName: "Cartelera", routeValues: new { idTanda = Tanda.idTanda,
+                                Peliculas_idPelicula = Tanda.Peliculas_idPelicula,
+                                Salas_idSala = Tanda,
+                                Fecha = Tanda.Fecha,
+                                AsientosDisponibles = Tanda.AsientosDisponibles
+                            },htmlAttributes: new { @class = "btn btn-primary" })
+                            <br><br/>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table> 
+</body>
