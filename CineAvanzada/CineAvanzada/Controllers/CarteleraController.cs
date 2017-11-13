@@ -19,7 +19,9 @@ namespace CineAvanzada.Controllers
 
         public ActionResult Compra(Tanda tanda)
         {
-            return View(tanda);
+            var CompraService = new CompraService();
+            var model = CompraService.Compra(tanda);
+            return View(model);
         }
     }
 }

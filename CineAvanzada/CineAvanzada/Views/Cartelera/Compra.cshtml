@@ -1,9 +1,39 @@
-﻿@model CineAvanzada.Models.Tanda
+﻿@model CineAvanzada.Models.Compra
 @{
     ViewBag.Title = "Compra";
+    int contador = 1;
 }
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <h2>Area de compra para la pelicula @Model.Pelicula.Nombre</h2>
+    <h2>Fecha y Hora: @Model.Tanda.Fecha</h2>
+    <h3>Sala @Model.Tanda.Salas_idSala</h3>
+    <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
+    <h4>Seleccione los asientos que desea</h4>
+    <br><br/>
+    @for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            bool bandera = false;
+            foreach (var Asiento in Model.Asientos)
+            {
+                if (contador == Asiento.idAsiento)
+                {
+                    <input type="submit" class="boton_AsientoReservado" value=@contador id=@contador />
+                    contador++;
+                    bandera = true;
+                }
+            }
+            if (bandera == false)
+            {
+                <input type="submit" class="boton_AsientoLibre" value=@contador id=@contador />
+                contador++;
+            }
 
-<h2>Compra</h2>
-<br><br/>
-<h3>@Model.Fecha</h3>
-
+        }
+        
+    }
+</body>
