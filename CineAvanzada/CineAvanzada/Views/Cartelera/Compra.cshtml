@@ -5,6 +5,21 @@
 }
 <head>
     @Styles.Render("~/Content/css")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".butacas").click(function () {
+                if ($(this).hasClass('boton_AsientoLibre')) {
+                    $(this).removeClass('boton_AsientoLibre');
+                    $(this).addClass('boton_AsientoEscogido');
+                } else {
+                    $(this).removeClass('boton_AsientoEscogido');
+                    $(this).addClass('boton_AsientoLibre');
+                }
+            });
+        })
+
+    </script>
 </head>
 <body>
     <h2>Area de compra para la pelicula @Model.Pelicula.Nombre</h2>
@@ -22,18 +37,17 @@
             {
                 if (contador == Asiento.idAsiento)
                 {
-                    <input type="submit" class="boton_AsientoReservado" value=@contador id=@contador />
+                    <input type="submit" class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled/>
                     contador++;
                     bandera = true;
                 }
             }
             if (bandera == false)
             {
-                <input type="submit" class="boton_AsientoLibre" value=@contador id=@contador />
+                <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
                 contador++;
             }
-
         }
-        
     }
+    <button onclick="Seleccionar()">prueba</button>
 </body>
