@@ -18,7 +18,6 @@
                 }
             });
         })
-
     </script>
 </head>
 <body>
@@ -33,7 +32,7 @@
         for (int j = 0; j < 10; j++)
         {
             bool bandera = false;
-            foreach (var Asiento in Model.Asientos)
+            foreach (var Asiento in Model.AsientosReservados)
             {
                 if (contador == Asiento.idAsiento)
                 {
@@ -49,5 +48,4 @@
             }
         }
     }
-    <button onclick="Seleccionar()">prueba</button>
 </body>

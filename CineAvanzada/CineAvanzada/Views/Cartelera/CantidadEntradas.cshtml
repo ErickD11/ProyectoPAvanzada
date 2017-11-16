@@ -1,0 +1,67 @@
+﻿@model CineAvanzada.Models.Compra
+@{
+    ViewBag.Title = "CantidadEntradas";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".subirAdulto").click(function () {
+                alert(@Model.EntradasAdulto);
+                alert(@Model.PrecioTotal.ToString());
+                alert(@Model.PrecioTotal.ToString());
+                $("#lblAdulto").text(@Model.EntradasAdulto.ToString());
+                $("#lblPrecioTotal").text(@Model.PrecioTotal.ToString());
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="text-center">
+        <h2>Area de compra para la pelicula @Model.Pelicula.Nombre</h2>
+        <img src=@Model.Pelicula.Imagen width="300" height="250" />
+        <h2>Fecha y Hora: @Model.Tanda.Fecha</h2>
+        <h3>Sala @Model.Tanda.Salas_idSala</h3>
+        <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
+        <br>
+        <h2>Seleccione cuantas entradas desea</h2>
+    </div>
+    <div class="text-center">
+        <form action="/Cartelera/CantidadEntradas" method="post">
+            <br>
+            <label class="label-personal">Adulto Regular: &nbsp;</label>
+            <label class="label-personal">₡ @Model.Tanda.PrecioAdulto &nbsp;</label>
+            <input class="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+            <label id="lblAdulto" class="label-personal">&nbsp;0&nbsp;</label>
+            <input name="EntradasAdultos" id="txtEntradasAdultos" type="text"/>
+            <input class="bajarAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+
+            <br>
+            <br>
+            @if (@Model.Tanda.PrecioNino > 0)
+            {
+                <label class="label-personal">Niño: &nbsp;</label>
+                <label class="label-personal">₡ @Model.Tanda.PrecioNino &nbsp; &nbsp;</label>
+                <input class="subirNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+                <input name="EntradasNino" id="txtEntradasNino" type="text"/>
+                <input class="bajarNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+                <br>
+                <br>
+            }
+            <label class="label-personal">Adulto Mayor: &nbsp;</label>
+            <label class="label-personal">₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
+            <input class="subirAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+            <label id="lblAdultoMayor" class="label-personal">&nbsp;0&nbsp;</label>
+            <input name="EntradasAdultosMayor" id="txtEntradasAdultosMayor" type="text"/>
+            <input class="bajarAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+            <br>
+            <br>
+            <label class="label-personal">Total: &nbsp;</label>
+            <label class="label-personal">₡ </label>
+            <label id="lblPrecioTotal" class="label-personal">&nbsp;0&nbsp;</label>
+            <br>
+            <br>
+            <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
+        </form>
+    </div>
+</body>

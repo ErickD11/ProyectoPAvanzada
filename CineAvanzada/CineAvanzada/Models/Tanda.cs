@@ -12,5 +12,8 @@ namespace CineAvanzada.Models
         public int Salas_idSala { get; set; }
         public DateTime Fecha { get; set; }
         public int AsientosDisponibles { get; set; }
+        public int PrecioAdulto { get; set; }
+        public int PrecioNino { get; set; }
+        public int PrecioAdultoMayor { get; set; }
     }
 }

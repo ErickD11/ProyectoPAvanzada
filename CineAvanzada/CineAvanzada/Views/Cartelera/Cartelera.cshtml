@@ -27,12 +27,15 @@
                     {
                         if (Tanda.Peliculas_idPelicula == Pelicula.idPelicula)
                         {
-                            @Html.ActionLink(linkText: Tanda.Fecha.ToString(),actionName: "Compra",
+                            @Html.ActionLink(linkText: Tanda.Fecha.ToString(),actionName: "CantidadEntradas",
                             controllerName: "Cartelera", routeValues: new { idTanda = Tanda.idTanda,
                                 Peliculas_idPelicula = Tanda.Peliculas_idPelicula,
-                                Salas_idSala = Tanda,
+                                Salas_idSala = Tanda.Salas_idSala,
                                 Fecha = Tanda.Fecha,
-                                AsientosDisponibles = Tanda.AsientosDisponibles
+                                AsientosDisponibles = Tanda.AsientosDisponibles,
+                                PrecioAdulto = Tanda.PrecioAdulto,
+                                PrecioNino = Tanda.PrecioNino,
+                                PrecioAdultoMayor = Tanda.PrecioAdultoMayor
                             },htmlAttributes: new { @class = "btn btn-primary" })
                             <br><br/>
                         }
