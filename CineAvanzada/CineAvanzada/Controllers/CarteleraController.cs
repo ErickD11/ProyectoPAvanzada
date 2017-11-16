@@ -46,17 +46,17 @@ namespace CineAvanzada.Controllers
             
         }
 
-        public ActionResult Compra()
-        {
-            if (compra == null)
-            {
-                return RedirectToAction("Cartelera");
-            }
-            else
-            {
-                return View(compra);
-            }
+        //public ActionResult Compra()
+        //{
+        //    if (compra == null)
+        //    {
+        //        return RedirectToAction("Cartelera");
+        //    }
+        //    else
+        //    {
+        //        return View(compra);
+        //    }
             
-        }
+        //}
     }
 }
