@@ -29,7 +29,10 @@ namespace CineAvanzada.Services
                     Peliculas_idPelicula = Int32.Parse(row[1].ToString()),
                     Salas_idSala = Int32.Parse(row[2].ToString()),
                     Fecha = Convert.ToDateTime(row[3].ToString().Substring(0, 10) + " " + row[4].ToString()),
-                    AsientosDisponibles = Int32.Parse(row[5].ToString())
+                    AsientosDisponibles = Int32.Parse(row[5].ToString()),
+                    PrecioAdulto = Int32.Parse(row[6].ToString()),
+                    PrecioNino = Int32.Parse(row[7].ToString()),
+                    PrecioAdultoMayor = Int32.Parse(row[8].ToString())
                 };
                 listaTandas.Add(newTanda);
             }

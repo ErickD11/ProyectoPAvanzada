@@ -59,9 +59,37 @@ namespace CineAvanzada.Services
             {
                 Tanda = tanda,
                 Pelicula = pelicula,
-                Asientos = Asientos
+                EntradasAdulto = 0,
+                EntradasNino = 0,
+                EntradasAdultoMayor = 0,
+                TotalEntradas = 0,
+                PrecioTotal = 0,
+                AsientosReservados = Asientos
             };
             return Compra;
+        }
+
+        public Compra CompraEntradas(Compra compra, int entradasAdulto, int entradasNino, int entradasAdultoMayor)
+        {
+            compra.EntradasAdulto = entradasAdulto;
+            compra.EntradasNino = entradasNino;
+            compra.EntradasAdultoMayor = entradasAdultoMayor;
+            return compra;
+        }
+
+        public Compra CompraEntradas(Compra compra, List<int> asientos)
+        {
+            List<Asiento> MisAsientos = new List<Asiento>();
+            foreach (int asiento in asientos)
+            {
+                Asiento newAsiento = new Asiento()
+                {
+                    idAsiento = asiento
+                };
+                MisAsientos.Add(newAsiento);
+            }
+            compra.Asientos = MisAsientos;
+            return compra;
         }
     }
 }

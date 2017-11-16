@@ -4903,6 +4903,23 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background-color: #c9302c;
 }
 
+.label-personal {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: x-large;
+    font-weight: bold;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #ffffff;
+    width: 30px;
+    height: 10px;
+
+}
+
 .badge {
   display: inline-block;
   min-width: 10px;
