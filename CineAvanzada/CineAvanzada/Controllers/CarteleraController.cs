@@ -37,7 +37,28 @@ namespace CineAvanzada.Controllers
         {
             if (compra != null)
             {
-                return View(compra);
+                int CantidadAdultos = Int32.Parse(EntradasAdulto);
+                int CantidadNinos = 0;
+                int CantidadAdultosMayores = Int32.Parse(EntradasAdultoMayor);
+                if (EntradasNino != null)
+                {
+                    CantidadNinos = Int32.Parse(EntradasNino);
+                }
+                int totalEntradas = CantidadAdultos + CantidadNinos + CantidadAdultosMayores;
+                if (totalEntradas > compra.Tanda.AsientosDisponibles)
+                {
+                    return View(compra);
+                }
+                else
+                {
+                    int precioTotal = (CantidadAdultos * compra.Tanda.PrecioAdulto) + (CantidadNinos * compra.Tanda.PrecioNino) + (CantidadAdultosMayores * compra.Tanda.PrecioAdultoMayor);
+                    compra.TotalEntradas = totalEntradas;
+                    compra.EntradasAdulto = CantidadAdultos;
+                    compra.EntradasNino = CantidadNinos;
+                    compra.EntradasAdultoMayor = CantidadAdultosMayores;
+                    compra.PrecioTotal = precioTotal;
+                    return RedirectToAction("Compra");
+                }
             }
             else
             {
@@ -46,17 +67,16 @@ namespace CineAvanzada.Controllers
             
         }
 
-        //public ActionResult Compra()
-        //{
-        //    if (compra == null)
-        //    {
-        //        return RedirectToAction("Cartelera");
-        //    }
-        //    else
-        //    {
-        //        return View(compra);
-        //    }
-            
-        //}
+        public ActionResult Compra()
+        {
+            if (compra == null)
+            {
+                return RedirectToAction("Cartelera");
+            }
+            else
+            {
+                return View(compra);
+            }
+        }
     }
 }
