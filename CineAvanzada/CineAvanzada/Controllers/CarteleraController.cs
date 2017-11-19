@@ -21,7 +21,7 @@ namespace CineAvanzada.Controllers
 
         public ActionResult CantidadEntradas(Tanda tanda)
         {
-            if(tanda != null)
+            if (tanda != null)
             {
                 var CompraService = new CompraService();
                 compra = CompraService.Compra(tanda);
@@ -64,7 +64,7 @@ namespace CineAvanzada.Controllers
             {
                 return RedirectToAction("Cartelera");
             }
-            
+
         }
 
         public ActionResult Compra()
@@ -76,6 +76,18 @@ namespace CineAvanzada.Controllers
             else
             {
                 return View(compra);
+            }
+        }
+
+        public ActionResult Pago(int[] asientos = null)
+        {
+            if (compra == null || asientos == null)
+            {
+                return RedirectToAction("Cartelera");
+            }
+            else
+            {
+                return View();
             }
         }
     }

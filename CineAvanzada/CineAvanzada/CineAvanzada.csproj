@@ -272,6 +272,7 @@
     <Content Include="Views\Cartelera\Cartelera.cshtml" />
     <Content Include="Views\Cartelera\Compra.cshtml" />
     <Content Include="Views\Cartelera\CantidadEntradas.cshtml" />
+    <Content Include="Views\Cartelera\Pago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
