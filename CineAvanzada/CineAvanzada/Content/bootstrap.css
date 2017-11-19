@@ -6879,9 +6879,23 @@ td.visible-print {
     background-color: #45ef23;
     border-radius: 6px;
     border: 2px solid #0016b0;
+}
 
-
-
+.boton_Pantalla {
+    border: 2px solid #DBE1EB;
+    font-size: 20px;
+    font-family: Arial, Verdana;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background: #9ea5af;
+    color: black;
+    width: 1000px;
+    height: 40px;
 }
 
 * {

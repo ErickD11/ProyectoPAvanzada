@@ -23,36 +23,22 @@
 <body>
     @if (Model.Pelicula != null && Model.AsientosReservados != null)
     {
-        <h2>Sala @Model.Tanda.Salas_idSala</h2>
-        <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
-        <h3>Seleccione los asientos que desea</h3>
+        <div class="text-center">
+            <h2>Sala @Model.Tanda.Salas_idSala</h2>
+            <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
+            <h3>Seleccione los asientos que desea</h3>
+        </div>
         <br><br>
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                bool bandera = false;
-                foreach (var Asiento in Model.AsientosReservados)
-                {
-                    if (contador == Asiento.idAsiento)
-                    {
-                        <input class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled />
-                        contador++;
-                        bandera = true;
-                    }
-                }
-                if (bandera == false)
-                {
-                    <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
-                    contador++;
-                }
-            }
-        }
-        <br><br><br><br>
-        using (Html.BeginForm("Pago", "Cartelera"))
-        {
-            contador = 1;
-            for (int i = 0; i < 10; i++)
+        <div class="text-center">
+            <input class="boton_AsientoReservado" value="Reservado" disabled />
+            <input class="boton_AsientoLibre" value="Libre"disabled />
+            <input class="boton_AsientoEscogido" value="Escogido" disabled />
+        </div>
+        <br><br>
+        <div class="text-center">
+            <button class="boton_Pantalla" disabled>Pantalla</button>
+            <br><br />
+            @for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
@@ -61,25 +47,47 @@
                     {
                         if (contador == Asiento.idAsiento)
                         {
-                            <label>
-                                @contador
-                                <input type="checkbox" name="asientos" value="@contador" disabled />
-                            </label>
+                            <input class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled />
                             contador++;
                             bandera = true;
                         }
                     }
                     if (bandera == false)
                     {
-                        <label>
-                            @contador
-                            <input type="checkbox" name="asientos" value="@contador" />
-                        </label>
+                        <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
                         contador++;
                     }
                 }
             }
-            <button type="submit" class="btn btn-primary">Realizar Pago</button>
-        }
+        </div>
+        <br><br><br><br>
+        <div class="text-center">
+            @using (Html.BeginForm("Pago", "Cartelera"))
+            {
+                contador = 1;
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        bool bandera = false;
+                        foreach (var Asiento in Model.AsientosReservados)
+                        {
+                            if (contador == Asiento.idAsiento)
+                            {
+                                <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled /></label>
+                                contador++;
+                                bandera = true;
+                            }
+                        }
+                        if (bandera == false)
+                        {
+                            <label>@contador<input type="checkbox" name="asientos" value="@contador" /></label>
+                            contador++;
+                        }
+                    }
+                }
+                <button type="submit" class="btn btn-primary">Realizar Pago</button>
+            }
+        </div>
     }
 </body>
