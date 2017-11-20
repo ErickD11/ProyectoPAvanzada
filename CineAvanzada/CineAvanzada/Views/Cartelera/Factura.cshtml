@@ -1,0 +1,61 @@
+﻿@model CineAvanzada.Models.Compra
+@{
+    ViewBag.Title = "Factura";
+}
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    @if (Model.Asientos != null && Model.CedulaPersona != null && Model.NombrePersona != null)
+    {
+        <div class="text-center">
+            <table class="table" align="center" border=1 frame="box" rules="all" cellspacing=1 cellpadding=1>
+                <tr>
+                    <td style="border:hidden">
+                        <h2>Area de Factura</h2>
+                        <h2>Gracias por tu compra</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:hidden">
+                        <img src=@Model.Pelicula.Imagen width="300" height="250" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:hidden">
+                        <h3>@Model.Pelicula.Nombre</h3>
+                        <h3>Fecha y Hora: @Model.Tanda.Fecha</h3>
+                        <h4>Cantidad de entradas: @Model.TotalEntradas</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:hidden">
+                        <p>
+                            Asientos: <br />
+                            @foreach (var asiento in Model.Asientos)
+                            {
+                            <p>
+                                &nbsp; Asiento: @asiento.idAsiento <br />
+                            </p>
+                            }
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:hidden">
+                            <h3>Nombre: @Model.NombrePersona</h3>
+                            <h3>Cedula: @Model.CedulaPersona</h3>
+                            <h2>Total: ₡ @Model.PrecioTotal</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:hidden">
+                            @Html.ActionLink(linkText: "Volver a Cartelera", actionName: "Cartelera",
+                            controllerName: "Cartelera", routeValues: new
+                            { }, htmlAttributes: new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    }
+</body>

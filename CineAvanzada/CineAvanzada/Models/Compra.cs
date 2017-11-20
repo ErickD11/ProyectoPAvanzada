@@ -16,5 +16,7 @@ namespace CineAvanzada.Models
         public int PrecioTotal { get; set; }
         public List<Asiento> AsientosReservados { get; set; }
         public List<Asiento> Asientos { get; set; }
+        public string CedulaPersona { get; set; }
+        public string NombrePersona { get; set; }
     }
 }

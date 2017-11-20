@@ -61,22 +61,24 @@
             <br>
             <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
         </form>
+        <br /><br />
         <form action="/Cartelera/CantidadEntradas" method="post">
             <div>
-                Adulto: &nbsp; &nbsp; &nbsp; ₡ @Model.Tanda.PrecioAdulto &nbsp; 
-                <input name="EntradasAdulto" id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles"/>
+                <label>Adulto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ₡ @Model.Tanda.PrecioAdulto &nbsp; </label>
+                <input name="EntradasAdulto" id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
             </div>
             @if (Model.Tanda.PrecioNino > 0)
             {
                 <div>
-                    Niño: &nbsp; &nbsp; ₡ @Model.Tanda.PrecioNino &nbsp;
-                    <input name="EntradasNino" id="txtEntradasNino" type="number" min="0" max="@Model.Tanda.AsientosDisponibles"/>
+                    <label>Niño:&nbsp;&nbsp;&nbsp;&nbsp; ₡ @Model.Tanda.PrecioNino &nbsp;</label>
+                    <input name="EntradasNino" id="txtEntradasNino" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
                 </div>
             }
             <div>
-                AdultoMayor: &nbsp; ₡ @Model.Tanda.PrecioAdultoMayor &nbsp;
-                <input name="EntradasAdultoMayor" id="txtEntradasAdultoMayor" type="number" min="0" max="@Model.Tanda.AsientosDisponibles"/>
+                <label>AdultoMayor: &nbsp; ₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
+                <input name="EntradasAdultoMayor" id="txtEntradasAdultoMayor" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
             </div>
+            <br />
             <div>
                 <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
             </div>

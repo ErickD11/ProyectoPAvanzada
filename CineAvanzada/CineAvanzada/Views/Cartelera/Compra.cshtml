@@ -49,6 +49,10 @@
                         {
                             <input class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled />
                             contador++;
+                            if (bandera)
+                            {
+                                j++;
+                            }
                             bandera = true;
                         }
                     }
@@ -76,6 +80,10 @@
                             {
                                 <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled /></label>
                                 contador++;
+                                if (bandera)
+                                {
+                                    j++;
+                                }
                                 bandera = true;
                             }
                         }
@@ -86,6 +94,7 @@
                         }
                     }
                 }
+                <br>
                 <button type="submit" class="btn btn-primary">Realizar Pago</button>
             }
         </div>

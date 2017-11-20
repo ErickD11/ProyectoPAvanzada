@@ -14,6 +14,7 @@ namespace CineAvanzada.Controllers
 
         public ActionResult Cartelera()
         {
+            compra = new Compra();
             var CarteleraService = new CarteleraService();
             var model = CarteleraService.Cartelera();
             return View(model);
@@ -35,14 +36,22 @@ namespace CineAvanzada.Controllers
         [HttpPost]
         public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor)
         {
-            if (compra != null)
+            if (compra != null && (EntradasAdulto != null || EntradasNino != null || EntradasAdultoMayor != null))
             {
-                int CantidadAdultos = Int32.Parse(EntradasAdulto);
+                int CantidadAdultos = 0;
                 int CantidadNinos = 0;
-                int CantidadAdultosMayores = Int32.Parse(EntradasAdultoMayor);
+                int CantidadAdultosMayores = 0;
+                if (EntradasAdulto != null)
+                {
+                    CantidadAdultos = Int32.Parse(EntradasAdulto);
+                }
                 if (EntradasNino != null)
                 {
                     CantidadNinos = Int32.Parse(EntradasNino);
+                }
+                if (EntradasAdultoMayor != null)
+                {
+                    CantidadAdultosMayores = Int32.Parse(EntradasAdultoMayor);
                 }
                 int totalEntradas = CantidadAdultos + CantidadNinos + CantidadAdultosMayores;
                 if (totalEntradas > compra.Tanda.AsientosDisponibles)
@@ -87,7 +96,35 @@ namespace CineAvanzada.Controllers
             }
             else
             {
-                return View();
+                foreach (int asiento in asientos)
+                {
+                    Asiento newAsiento = new Asiento()
+                    {
+                        idAsiento = asiento
+                    };
+                    if (compra.Asientos == null)
+                    {
+                        compra.Asientos = new List<Asiento>();
+                    }
+                    compra.Asientos.Add(newAsiento);
+                }
+                return View(compra);
+            }
+        }
+
+        public ActionResult Factura(string nombre, string cedula)
+        {
+            if (compra == null || nombre == null || cedula == null)
+            {
+                return RedirectToAction("Cartelera");
+            }
+            else
+            {
+                compra.CedulaPersona = cedula;
+                compra.NombrePersona = nombre;
+                var Pago = new PagoService();
+                Pago.RealizarPago(compra);
+                return View(compra);
             }
         }
     }
