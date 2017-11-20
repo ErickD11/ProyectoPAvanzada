@@ -33,7 +33,6 @@
             <label class="label-personal">₡ @Model.Tanda.PrecioAdulto &nbsp;</label>
             <input class="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
             <label id="lblAdulto" class="label-personal">&nbsp;0&nbsp;</label>
-            <input name="EntradasAdultos" id="txtEntradasAdultos" type="text"/>
             <input class="bajarAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
 
             <br>
@@ -43,7 +42,7 @@
                 <label class="label-personal">Niño: &nbsp;</label>
                 <label class="label-personal">₡ @Model.Tanda.PrecioNino &nbsp; &nbsp;</label>
                 <input class="subirNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
-                <input name="EntradasNino" id="txtEntradasNino" type="text"/>
+                <label id="lblNino" class="label-personal">&nbsp;0&nbsp;</label>
                 <input class="bajarNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
                 <br>
                 <br>
@@ -52,7 +51,6 @@
             <label class="label-personal">₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
             <input class="subirAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
             <label id="lblAdultoMayor" class="label-personal">&nbsp;0&nbsp;</label>
-            <input name="EntradasAdultosMayor" id="txtEntradasAdultosMayor" type="text"/>
             <input class="bajarAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
             <br>
             <br>
@@ -62,6 +60,28 @@
             <br>
             <br>
             <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
+        </form>
+        <br /><br />
+        <form action="/Cartelera/CantidadEntradas" method="post">
+            <div>
+                <label>Adulto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ₡ @Model.Tanda.PrecioAdulto &nbsp; </label>
+                <input name="EntradasAdulto" id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+            </div>
+            @if (Model.Tanda.PrecioNino > 0)
+            {
+                <div>
+                    <label>Niño:&nbsp;&nbsp;&nbsp;&nbsp; ₡ @Model.Tanda.PrecioNino &nbsp;</label>
+                    <input name="EntradasNino" id="txtEntradasNino" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+                </div>
+            }
+            <div>
+                <label>AdultoMayor: &nbsp; ₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
+                <input name="EntradasAdultoMayor" id="txtEntradasAdultoMayor" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+            </div>
+            <br />
+            <div>
+                <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
+            </div>
         </form>
     </div>
 </body>

@@ -1,0 +1,65 @@
+﻿@model CineAvanzada.Models.Compra
+@{
+    ViewBag.Title = "Pago";
+}
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    @if (Model.Asientos != null)
+    {
+        <div class="text-center">
+            <h2>@Model.Pelicula.Nombre</h2>
+            <img src=@Model.Pelicula.Imagen width="300" height="250" />
+            <h2>Fecha y Hora: @Model.Tanda.Fecha</h2>
+            <p>
+                Selecciono:<br />
+                &nbsp;@Model.EntradasAdulto entradas para adulto regular<br />
+                @if (Model.Tanda.PrecioNino != 0)
+                {
+                    <p>
+                        &nbsp;@Model.EntradasNino entradas para niño<br />
+                    </p>
+                }
+                &nbsp;@Model.EntradasAdultoMayor entradas para adulto mayor<br />
+                <br />
+                Total de entradas: @Model.TotalEntradas<br />
+                <br>
+                Sus asientos son :<br />
+                @foreach(var Asiento in Model.Asientos)
+                {
+                    <p>
+                        &nbsp;Asiento: @Asiento.idAsiento<br />
+                    </p>
+                }
+            </p>
+            <h2>Precio Total: ₡ @Model.PrecioTotal</h2>
+        </div>
+        <br><br>
+        <div class="text-center">
+            @using (Html.BeginForm("Factura", "Cartelera"))
+            {
+                <label>Digite su nombre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="nombre" />
+                <br />
+                <label>Digite su cedula:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" name="cedula" />
+                <br />
+                <label>Seleccione la tarjeta:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <select name="tarjetas">
+                    <option value="Visa" selected>Visa</option>
+                    <option value="Mastercard" >Mastercard</option>
+                    <option value="American Express">American Express</option>
+                </select>
+                <br />
+                <label>Numero de la tarjeta:  </label>
+                <input type="text" name="numTarjeta" />
+                <br />
+                <label>Codigo de seguridad: </label>
+                <input type="text" name="codTarjeta" />
+                <br /><br />
+                <button type="submit" class="btn btn-primary">Realizar Compra</button>
+            }
+        </div>
+    }
+</body>

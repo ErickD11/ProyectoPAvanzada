@@ -21,31 +21,82 @@
     </script>
 </head>
 <body>
-    <h2>Area de compra para la pelicula @Model.Pelicula.Nombre</h2>
-    <h2>Fecha y Hora: @Model.Tanda.Fecha</h2>
-    <h3>Sala @Model.Tanda.Salas_idSala</h3>
-    <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
-    <h4>Seleccione los asientos que desea</h4>
-    <br><br/>
-    @for (int i = 0; i < 10; i++)
+    @if (Model.Pelicula != null && Model.AsientosReservados != null)
     {
-        for (int j = 0; j < 10; j++)
-        {
-            bool bandera = false;
-            foreach (var Asiento in Model.AsientosReservados)
+        <div class="text-center">
+            <h2>Sala @Model.Tanda.Salas_idSala</h2>
+            <h3>Quedan @Model.Tanda.AsientosDisponibles asientos disponibles</h3>
+            <h3>Seleccione los asientos que desea</h3>
+        </div>
+        <br><br>
+        <div class="text-center">
+            <input class="boton_AsientoReservado" value="Reservado" disabled />
+            <input class="boton_AsientoLibre" value="Libre"disabled />
+            <input class="boton_AsientoEscogido" value="Escogido" disabled />
+        </div>
+        <br><br>
+        <div class="text-center">
+            <button class="boton_Pantalla" disabled>Pantalla</button>
+            <br><br />
+            @for (int i = 0; i < 10; i++)
             {
-                if (contador == Asiento.idAsiento)
+                for (int j = 0; j < 10; j++)
                 {
-                    <input type="submit" class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled/>
-                    contador++;
-                    bandera = true;
+                    bool bandera = false;
+                    foreach (var Asiento in Model.AsientosReservados)
+                    {
+                        if (contador == Asiento.idAsiento)
+                        {
+                            <input class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled />
+                            contador++;
+                            if (bandera)
+                            {
+                                j++;
+                            }
+                            bandera = true;
+                        }
+                    }
+                    if (bandera == false)
+                    {
+                        <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
+                        contador++;
+                    }
                 }
             }
-            if (bandera == false)
+        </div>
+        <br><br><br><br>
+        <div class="text-center">
+            @using (Html.BeginForm("Pago", "Cartelera"))
             {
-                <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
-                contador++;
+                contador = 1;
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        bool bandera = false;
+                        foreach (var Asiento in Model.AsientosReservados)
+                        {
+                            if (contador == Asiento.idAsiento)
+                            {
+                                <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled /></label>
+                                contador++;
+                                if (bandera)
+                                {
+                                    j++;
+                                }
+                                bandera = true;
+                            }
+                        }
+                        if (bandera == false)
+                        {
+                            <label>@contador<input type="checkbox" name="asientos" value="@contador" /></label>
+                            contador++;
+                        }
+                    }
+                }
+                <br>
+                <button type="submit" class="btn btn-primary">Realizar Pago</button>
             }
-        }
+        </div>
     }
 </body>
