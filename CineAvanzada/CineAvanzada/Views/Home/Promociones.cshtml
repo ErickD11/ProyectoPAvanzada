@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Promociones";
+}
+
+<h2>Promociones</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Promociones</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#promocionesdulceria">Promociones Dulceria</a></li>
+			<li><a href="#promocionestaquilla">Promociones Taquilla</a></li>
+			<li><a href="#descuentosaliados">Descuentos Aliados</a></li>
+			<li><a href="#combosdulceria">Combos Dulceria</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="promocionesdulceria" class="tab-pane fade in active">
+				<h3>Promociones Dulceria</h3>
+				<p>Promociones Dulceria</p>
+			</div>
+			<div id="promocionestaquilla" class="tab-pane fade">
+				<h3>Promociones Taquilla</h3>
+				<p>Promociones Taquilla</p>
+			</div>
+			<div id="descuentosaliados" class="tab-pane fade">
+				<h3>Descuentos Aliados</h3>
+				<p>Descuentos Aliados</p>
+			</div>
+			<div id="combosdulceria" class="tab-pane fade">
+				<h3>Combos Dulceria</h3>
+				<p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$(".nav-tabs a").click(function () {
+				$(this).tab('show');
+			});
+		});
+	</script>
+
+</body>
+</html>
+

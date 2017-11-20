@@ -10,6 +10,7 @@ namespace CineAvanzada.Controllers
 	{
 		public ActionResult Index()
 		{
+
 			return View();
 		}
 
@@ -27,5 +28,12 @@ namespace CineAvanzada.Controllers
 			return View();
 		}
 
-    }
+		public ActionResult Promociones()
+		{
+			ViewBag.Message = "Your contact page.";
+
+			return View();
+		}
+
+	}
 }
