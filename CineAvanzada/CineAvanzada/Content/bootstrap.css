@@ -73,9 +73,6 @@ html {
       -ms-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-}
 
 a:focus {
   outline: thin dotted;
@@ -4518,8 +4515,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+	background-color: #7c2222;
+	border-color: #080808;
 }
 
 .navbar-inverse .navbar-brand {
@@ -6857,7 +6854,7 @@ td.visible-print {
 }
 
 body {
-	background: #4B77BE;
+	background: #fff;
 }
 
 .wrapper {
