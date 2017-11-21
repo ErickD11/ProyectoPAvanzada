@@ -7,11 +7,12 @@
     <script>
         $(function () {
             $(".subirAdulto").click(function () {
-                alert(@Model.EntradasAdulto);
-                alert(@Model.PrecioTotal.ToString());
-                alert(@Model.PrecioTotal.ToString());
-                $("#lblAdulto").text(@Model.EntradasAdulto.ToString());
-                $("#lblPrecioTotal").text(@Model.PrecioTotal.ToString());
+                var entradas = 0;
+                if ($("#txtEntradasAdulto").val() != "") {
+                    entradas = parseInt($("#txtEntradasAdulto").val());
+                }
+                $("#txtEntradasAdulto").val(entradas +1)
+                return false;
             });
         });
     </script>
@@ -31,7 +32,7 @@
             <br>
             <label class="label-personal">Adulto Regular: &nbsp;</label>
             <label class="label-personal">₡ @Model.Tanda.PrecioAdulto &nbsp;</label>
-            <input class="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+            <input ID ="subirAdulto" class="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
             <label id="lblAdulto" class="label-personal">&nbsp;0&nbsp;</label>
             <input class="bajarAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
 
@@ -65,7 +66,7 @@
         <form action="/Cartelera/CantidadEntradas" method="post">
             <div>
                 <label>Adulto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ₡ @Model.Tanda.PrecioAdulto &nbsp; </label>
-                <input name="EntradasAdulto" id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+                <input name="EntradasAdulto" disabled id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
             </div>
             @if (Model.Tanda.PrecioNino > 0)
             {

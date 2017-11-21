@@ -41,15 +41,15 @@ namespace CineAvanzada.Controllers
                 int CantidadAdultos = 0;
                 int CantidadNinos = 0;
                 int CantidadAdultosMayores = 0;
-                if (EntradasAdulto != null)
+                if (EntradasAdulto != null && EntradasAdulto != "")
                 {
                     CantidadAdultos = Int32.Parse(EntradasAdulto);
                 }
-                if (EntradasNino != null)
+                if (EntradasNino != null && EntradasNino != "")
                 {
                     CantidadNinos = Int32.Parse(EntradasNino);
                 }
-                if (EntradasAdultoMayor != null)
+                if (EntradasAdultoMayor != null && EntradasAdultoMayor != "")
                 {
                     CantidadAdultosMayores = Int32.Parse(EntradasAdultoMayor);
                 }

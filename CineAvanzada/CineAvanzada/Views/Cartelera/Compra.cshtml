@@ -16,6 +16,7 @@
                     $(this).removeClass('boton_AsientoEscogido');
                     $(this).addClass('boton_AsientoLibre');
                 }
+                $("#chk" + $(this).val()).prop('checked', true);
             });
         })
     </script>
@@ -78,7 +79,7 @@
                         {
                             if (contador == Asiento.idAsiento)
                             {
-                                <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled /></label>
+                                <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled  style="display:none" /></label>
                                 contador++;
                                 if (bandera)
                                 {
@@ -89,7 +90,7 @@
                         }
                         if (bandera == false)
                         {
-                            <label>@contador<input type="checkbox" name="asientos" value="@contador" /></label>
+                            <label>@contador<input type="checkbox" id='@("chk"+contador)' name="asientos" value="@contador" style="display:none" /></label>
                             contador++;
                         }
                     }
