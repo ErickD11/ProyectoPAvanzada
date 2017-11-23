@@ -34,7 +34,7 @@ namespace CineAvanzada.Controllers
             }
         }
         [HttpPost]
-        public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor)
+        public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor, string Total)
         {
             if (compra != null && (EntradasAdulto != null || EntradasNino != null || EntradasAdultoMayor != null))
             {
