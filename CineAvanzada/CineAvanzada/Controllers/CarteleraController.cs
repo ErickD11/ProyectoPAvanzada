@@ -33,6 +33,7 @@ namespace CineAvanzada.Controllers
                 return RedirectToAction("Cartelera");
             }
         }
+
         [HttpPost]
         public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor, string Total)
         {
@@ -90,25 +91,32 @@ namespace CineAvanzada.Controllers
 
         public ActionResult Pago(int[] asientos = null)
         {
-            if (compra == null || asientos == null)
+            if (compra == null)
             {
                 return RedirectToAction("Cartelera");
             }
             else
             {
-                foreach (int asiento in asientos)
+                if (asientos == null)
                 {
-                    Asiento newAsiento = new Asiento()
-                    {
-                        idAsiento = asiento
-                    };
-                    if (compra.Asientos == null)
-                    {
-                        compra.Asientos = new List<Asiento>();
-                    }
-                    compra.Asientos.Add(newAsiento);
+                    return RedirectToAction("Compra");
                 }
-                return View(compra);
+                else
+                {
+                    foreach (int asiento in asientos)
+                    {
+                        Asiento newAsiento = new Asiento()
+                        {
+                            idAsiento = asiento
+                        };
+                        if (compra.Asientos == null)
+                        {
+                            compra.Asientos = new List<Asiento>();
+                        }
+                        compra.Asientos.Add(newAsiento);
+                    }
+                    return View(compra);
+                }
             }
         }
 
