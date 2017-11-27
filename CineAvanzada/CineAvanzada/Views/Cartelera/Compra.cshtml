@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Compra";
     int contador = 1;
-    int cantidadEntradas = Model.TotalEntradas;
 }
 <head>
     @Styles.Render("~/Content/css")
@@ -10,30 +9,12 @@
     <script>
         $(function () {
             $(".butacas").click(function () {
-                var TotalEntradas = parseInt($("#TotalEntradas").val());
-                var cantidadSeleccionada = 0;
-                for (var i = 1; i <= 100; i++) {
-                    if ($("#chk" + i).prop('checked')) {
-                        cantidadSeleccionada++;
-                    }
-                }
-                if (cantidadSeleccionada < TotalEntradas) {
-                    
-                    if ($(this).hasClass('boton_AsientoLibre')) {
-                        $(this).removeClass('boton_AsientoLibre');
-                        $(this).addClass('boton_AsientoEscogido');
-                        $("#chk" + $(this).val()).prop('checked', true);
-                    } else {
-                        $(this).removeClass('boton_AsientoEscogido');
-                        $(this).addClass('boton_AsientoLibre');
-                        $("#chk" + $(this).val()).prop('checked', false);
-                    }
+                if ($(this).hasClass('boton_AsientoLibre')) {
+                    $(this).removeClass('boton_AsientoLibre');
+                    $(this).addClass('boton_AsientoEscogido');
                 } else {
-                    if ($(this).hasClass('boton_AsientoEscogido')) {
-                        $(this).removeClass('boton_AsientoEscogido');
-                        $(this).addClass('boton_AsientoLibre');
-                        $("#chk" + $(this).val()).prop('checked', false);
-                    }
+                    $(this).removeClass('boton_AsientoEscogido');
+                    $(this).addClass('boton_AsientoLibre');
                 }
             });
         })
@@ -52,9 +33,6 @@
             <input class="boton_AsientoReservado" value="Reservado" disabled />
             <input class="boton_AsientoLibre" value="Libre"disabled />
             <input class="boton_AsientoEscogido" value="Escogido" disabled />
-        </div>
-        <div>
-            <input id="TotalEntradas" type="text" value="@Model.TotalEntradas" style="display:none"/>
         </div>
         <br><br>
         <div class="text-center">
@@ -80,17 +58,8 @@
                     }
                     if (bandera == false)
                     {
-                        if (cantidadEntradas > 0)
-                        {
-                            <input id="@contador.ToString()" type="button" class="butacas boton_AsientoEscogido" value=@contador />
-                            contador++;
-                            cantidadEntradas--;
-                        }
-                        else
-                        {
-                            <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
-                            contador++;
-                        }
+                        <input id="@contador.ToString()" type="button" class="butacas boton_AsientoLibre" value=@contador />
+                        contador++;
                     }
                 }
             }
@@ -100,7 +69,6 @@
             @using (Html.BeginForm("Pago", "Cartelera"))
             {
                 contador = 1;
-                cantidadEntradas = Model.TotalEntradas;
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
@@ -110,7 +78,7 @@
                         {
                             if (contador == Asiento.idAsiento)
                             {
-                                <input type="checkbox" name="asientos" value="@contador" disabled style="display:none"/>
+                                <label>@contador<input type="checkbox" name="asientos" value="@contador" disabled /></label>
                                 contador++;
                                 if (bandera)
                                 {
@@ -121,19 +89,8 @@
                         }
                         if (bandera == false)
                         {
-                            if (cantidadEntradas > 0)
-                            {
-                                <input type="checkbox" id='@("chk"+contador)' name="asientos" value="@contador" checked style="display:none"/>
-                                contador++;
-                                cantidadEntradas--;
-                            }
-                            else
-                            {
-                                <input type="checkbox" id='@("chk"+contador)' name="asientos" value="@contador" style="display:none"/>
-                                contador++;
-                                cantidadEntradas--;
-                            }
-
+                            <label>@contador<input type="checkbox" name="asientos" value="@contador" /></label>
+                            contador++;
                         }
                     }
                 }

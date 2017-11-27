@@ -1,94 +1,17 @@
 ﻿@model CineAvanzada.Models.Compra
 @{
     ViewBag.Title = "CantidadEntradas";
-
 }
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
         $(function () {
-            $("#subirAdulto").click(function () {
-                var entradasAdulto = parseInt($("#txtEntradasAdulto").val());
-                var entradasNino = 0;
-                var entradasAdultoMayor = parseInt($("#txtEntradasAdultoMayor").val());
-                var precioTotal = parseInt($("#Total").val());
-                var entradasSeleccionas = 0;
-                var precioAdulto = parseInt($("#precioAdulto").val());
-                var entradasDisponibles = parseInt($("#entradasDisponibles").val());
-                var precioNino = parseInt($("#precioNino").val());
-                if (precioNino > 0){
-                    entradasNino = parseInt($("#txtEntradasNino").val());
-                }
-                entradasSeleccionas = entradasAdulto + entradasNino + entradasAdultoMayor;
-                if (entradasSeleccionas < entradasDisponibles) {
-                    $("#txtEntradasAdulto").val(entradasAdulto + 1);
-                    $("#Total").val(precioTotal + precioAdulto);
-                }
-                return false;
-            });
-            $("#bajarAdulto").click(function () {
-                var entradasAdulto = parseInt($("#txtEntradasAdulto").val());
-                var precioTotal = parseInt($("#Total").val());
-                var precioAdulto = parseInt($("#precioAdulto").val());
-                if (entradasAdulto > 0) {
-                    $("#txtEntradasAdulto").val(entradasAdulto - 1);
-                    $("#Total").val(precioTotal - precioAdulto);
-                }
-                return false;
-            });
-            $("#subirAdultoMayor").click(function () {
-                var entradasAdulto = parseInt($("#txtEntradasAdulto").val());
-                var entradasNino = 0;
-                var entradasAdultoMayor = parseInt($("#txtEntradasAdultoMayor").val());
-                var precioTotal = parseInt($("#Total").val());
-                var entradasSeleccionas = 0;
-                var precioAdultoMayor = parseInt($("#precioAdultoMayor").val());
-                var entradasDisponibles = parseInt($("#entradasDisponibles").val());
-                var precioNino = parseInt($("#precioNino").val());
-                if (precioNino > 0) {
-                    entradasNino = parseInt($("#txtEntradasNino").val());
-                }
-                entradasSeleccionas = entradasAdulto + entradasNino + entradasAdultoMayor;
-                if (entradasSeleccionas < entradasDisponibles) {
-                    $("#txtEntradasAdultoMayor").val(entradasAdultoMayor + 1);
-                    $("#Total").val(precioTotal + precioAdultoMayor);
-                }
-                return false;
-            });
-            $("#bajarAdultoMayor").click(function () {
-                var entradasAdultoMayor = parseInt($("#txtEntradasAdultoMayor").val());
-                var precioTotal = parseInt($("#Total").val());
-                var precioAdultoMayor = parseInt($("#precioAdultoMayor").val());
-                if (entradasAdultoMayor > 0) {
-                    $("#txtEntradasAdultoMayor").val(entradasAdultoMayor - 1);
-                    $("#Total").val(precioTotal - precioAdultoMayor);
-                }
-                return false;
-            });
-            $("#subirNino").click(function () {
-                var entradasAdulto = parseInt($("#txtEntradasAdulto").val());
-                var entradasNino = parseInt($("#txtEntradasNino").val());
-                var entradasAdultoMayor = parseInt($("#txtEntradasAdultoMayor").val());
-                var precioTotal = parseInt($("#Total").val());
-                var entradasSeleccionas = 0;
-                var entradasDisponibles = parseInt($("#entradasDisponibles").val());
-                var precioNino = parseInt($("#precioNino").val());
-                entradasSeleccionas = entradasAdulto + entradasNino + entradasAdultoMayor;
-                if (entradasSeleccionas < entradasDisponibles) {
-                    $("#txtEntradasNino").val(entradasNino + 1);
-                    $("#Total").val(precioTotal + precioNino);
-                }
-                return false;
-            });
-            $("#bajarNino").click(function () {
-                var entradasNino = parseInt($("#txtEntradasNino").val());
-                var precioTotal = parseInt($("#Total").val());
-                var precioNino = parseInt($("#precioNino").val());
-                if (entradasNino > 0) {
-                    $("#txtEntradasNino").val(entradasNino - 1);
-                    $("#Total").val(precioTotal - precioNino);
-                }
-                return false;
+            $(".subirAdulto").click(function () {
+                alert(@Model.EntradasAdulto);
+                alert(@Model.PrecioTotal.ToString());
+                alert(@Model.PrecioTotal.ToString());
+                $("#lblAdulto").text(@Model.EntradasAdulto.ToString());
+                $("#lblPrecioTotal").text(@Model.PrecioTotal.ToString());
             });
         });
     </script>
@@ -103,45 +26,62 @@
         <br>
         <h2>Seleccione cuantas entradas desea</h2>
     </div>
-    <div>
-        <input id="precioAdulto" type="text" value="@Model.Tanda.PrecioAdulto" style="display:none"/>
-        <input id="entradasDisponibles" type="text" value="@Model.Tanda.AsientosDisponibles" style="display:none"/>
-        <input id="precioNino" type="text" value="@Model.Tanda.PrecioNino" style="display:none"/>
-        <input id="precioAdultoMayor" type="text" value="@Model.Tanda.PrecioAdultoMayor" style="display:none" />
-    </div>
     <div class="text-center">
         <form action="/Cartelera/CantidadEntradas" method="post">
             <br>
             <label class="label-personal">Adulto Regular: &nbsp;</label>
             <label class="label-personal">₡ @Model.Tanda.PrecioAdulto &nbsp;</label>
-            <input id="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
-            <input name="EntradasAdulto" ReadOnly id="txtEntradasAdulto" type="number" class="input-Personal" value="0"/>
-            <input id="bajarAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+            <input class="subirAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+            <label id="lblAdulto" class="label-personal">&nbsp;0&nbsp;</label>
+            <input class="bajarAdulto" type="image" src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+
             <br>
             <br>
             @if (@Model.Tanda.PrecioNino > 0)
             {
-                <label class="label-personal">Niño: &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</label>
-                <label class="label-personal">₡ @Model.Tanda.PrecioNino &nbsp;</label>
-                <input id="subirNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
-                <input name="EntradasNino" ReadOnly id="txtEntradasNino" type="number" class="input-Personal" value="0"/>
-                <input id="bajarNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+                <label class="label-personal">Niño: &nbsp;</label>
+                <label class="label-personal">₡ @Model.Tanda.PrecioNino &nbsp; &nbsp;</label>
+                <input class="subirNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+                <label id="lblNino" class="label-personal">&nbsp;0&nbsp;</label>
+                <input class="bajarNino" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
                 <br>
                 <br>
             }
             <label class="label-personal">Adulto Mayor: &nbsp;</label>
             <label class="label-personal">₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
-            <input id="subirAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
-            <input name="EntradasAdultoMayor" ReadOnly id="txtEntradasAdultoMayor" type="number" class="input-Personal" value="0"/>
-            <input id="bajarAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
+            <input class="subirAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b06.png" width="45" height="45">
+            <label id="lblAdultoMayor" class="label-personal">&nbsp;0&nbsp;</label>
+            <input class="bajarAdultoMayor" type=image src="https://images.emojiterra.com/emojione/v2/512px/2b07.png" width="45" height="45">
             <br>
             <br>
             <label class="label-personal">Total: &nbsp;</label>
             <label class="label-personal">₡ </label>
-            <input name="Total" ReadOnly id="Total" type="number" class="input-Personal" value="0"/>
+            <label id="lblPrecioTotal" class="label-personal">&nbsp;0&nbsp;</label>
             <br>
             <br>
             <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
+        </form>
+        <br /><br />
+        <form action="/Cartelera/CantidadEntradas" method="post">
+            <div>
+                <label>Adulto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ₡ @Model.Tanda.PrecioAdulto &nbsp; </label>
+                <input name="EntradasAdulto" id="txtEntradasAdulto" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+            </div>
+            @if (Model.Tanda.PrecioNino > 0)
+            {
+                <div>
+                    <label>Niño:&nbsp;&nbsp;&nbsp;&nbsp; ₡ @Model.Tanda.PrecioNino &nbsp;</label>
+                    <input name="EntradasNino" id="txtEntradasNino" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+                </div>
+            }
+            <div>
+                <label>AdultoMayor: &nbsp; ₡ @Model.Tanda.PrecioAdultoMayor &nbsp;</label>
+                <input name="EntradasAdultoMayor" id="txtEntradasAdultoMayor" type="number" min="0" max="@Model.Tanda.AsientosDisponibles" />
+            </div>
+            <br />
+            <div>
+                <input id="btnSubmit" type="submit" value="Seleccionar Asientos" class="btn btn-primary">
+            </div>
         </form>
     </div>
 </body>
