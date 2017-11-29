@@ -1,12 +1,12 @@
 ﻿@model CineAvanzada.Models.Cartelera
 @{
-    ViewBag.Title = "Carlera"; 
+    ViewBag.Title = "Carlera";
 }
 <head>
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <br><br/>
+    <br><br />
     <table class="table" align="center" border=1 frame="box" rules="all" cellspacing=1 cellpadding=1>
         @foreach (var Pelicula in Model.Peliculas)
         {
@@ -27,8 +27,10 @@
                     {
                         if (Tanda.Peliculas_idPelicula == Pelicula.idPelicula)
                         {
-                            @Html.ActionLink(linkText: Tanda.Fecha.ToString(),actionName: "CantidadEntradas",
-                            controllerName: "Cartelera", routeValues: new { idTanda = Tanda.idTanda,
+                            @Html.ActionLink(linkText: Tanda.Fecha.ToString(), actionName: "CantidadEntradas",
+                            controllerName: "Cartelera", routeValues: new
+                            {
+                                idTanda = Tanda.idTanda,
                                 Peliculas_idPelicula = Tanda.Peliculas_idPelicula,
                                 Salas_idSala = Tanda.Salas_idSala,
                                 Fecha = Tanda.Fecha,
@@ -36,12 +38,12 @@
                                 PrecioAdulto = Tanda.PrecioAdulto,
                                 PrecioNino = Tanda.PrecioNino,
                                 PrecioAdultoMayor = Tanda.PrecioAdultoMayor
-                            },htmlAttributes: new { @class = "btn btn-primary" })
-                            <br><br/>
+                            }, htmlAttributes: new { @class = "btn btn-primary" })
+                            <br><br />
                         }
                     }
                 </td>
             </tr>
         }
-    </table> 
+    </table>
 </body>

@@ -20,22 +20,22 @@ namespace CineAvanzada.Services
                     using (SqlCommand cmd = new SqlCommand("Facturacion", conexion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@idFactura",newIdFactura(conexion)));
-                        cmd.Parameters.Add(new SqlParameter("@MontoTotal",compra.PrecioTotal));
-                        cmd.Parameters.Add(new SqlParameter("@CantidadAsientos",compra.TotalEntradas));
-                        cmd.Parameters.Add(new SqlParameter("@CedulaPersona",compra.CedulaPersona));
-                        cmd.Parameters.Add(new SqlParameter("@NombrePersona",compra.NombrePersona));
-                        cmd.Parameters.Add(new SqlParameter("@idTanda",compra.Tanda.idTanda));
-                        cmd.Parameters.Add(new SqlParameter("@idAsiento",asiento.idAsiento));
+                        cmd.Parameters.Add(new SqlParameter("@idFactura", newIdFactura(conexion)));
+                        cmd.Parameters.Add(new SqlParameter("@MontoTotal", compra.PrecioTotal));
+                        cmd.Parameters.Add(new SqlParameter("@CantidadAsientos", compra.TotalEntradas));
+                        cmd.Parameters.Add(new SqlParameter("@CedulaPersona", compra.CedulaPersona));
+                        cmd.Parameters.Add(new SqlParameter("@NombrePersona", compra.NombrePersona));
+                        cmd.Parameters.Add(new SqlParameter("@idTanda", compra.Tanda.idTanda));
+                        cmd.Parameters.Add(new SqlParameter("@idAsiento", asiento.idAsiento));
                         conexion.Open();
                         cmd.ExecuteNonQuery();
                         conexion.Close();
                     }
-                }  
-            }    
+                }
+            }
         }
 
-        private int newIdFactura (SqlConnection conexion)
+        private int newIdFactura(SqlConnection conexion)
         {
             int idFactura = 0;
             conexion.Open();
@@ -50,6 +50,6 @@ namespace CineAvanzada.Services
             conexion.Close();
             idFactura++;
             return idFactura;
-        } 
+        }
     }
 }

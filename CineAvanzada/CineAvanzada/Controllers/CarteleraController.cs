@@ -33,23 +33,24 @@ namespace CineAvanzada.Controllers
                 return RedirectToAction("Cartelera");
             }
         }
+
         [HttpPost]
-        public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor)
+        public ActionResult CantidadEntradas(string EntradasAdulto, string EntradasNino, string EntradasAdultoMayor, string Total)
         {
             if (compra != null && (EntradasAdulto != null || EntradasNino != null || EntradasAdultoMayor != null))
             {
                 int CantidadAdultos = 0;
                 int CantidadNinos = 0;
                 int CantidadAdultosMayores = 0;
-                if (EntradasAdulto != null)
+                if (EntradasAdulto != null && EntradasAdulto != "")
                 {
                     CantidadAdultos = Int32.Parse(EntradasAdulto);
                 }
-                if (EntradasNino != null)
+                if (EntradasNino != null && EntradasNino != "")
                 {
                     CantidadNinos = Int32.Parse(EntradasNino);
                 }
-                if (EntradasAdultoMayor != null)
+                if (EntradasAdultoMayor != null && EntradasAdultoMayor != "")
                 {
                     CantidadAdultosMayores = Int32.Parse(EntradasAdultoMayor);
                 }
@@ -90,25 +91,32 @@ namespace CineAvanzada.Controllers
 
         public ActionResult Pago(int[] asientos = null)
         {
-            if (compra == null || asientos == null)
+            if (compra == null)
             {
                 return RedirectToAction("Cartelera");
             }
             else
             {
-                foreach (int asiento in asientos)
+                if (asientos == null)
                 {
-                    Asiento newAsiento = new Asiento()
-                    {
-                        idAsiento = asiento
-                    };
-                    if (compra.Asientos == null)
-                    {
-                        compra.Asientos = new List<Asiento>();
-                    }
-                    compra.Asientos.Add(newAsiento);
+                    return RedirectToAction("Compra");
                 }
-                return View(compra);
+                else
+                {
+                    foreach (int asiento in asientos)
+                    {
+                        Asiento newAsiento = new Asiento()
+                        {
+                            idAsiento = asiento
+                        };
+                        if (compra.Asientos == null)
+                        {
+                            compra.Asientos = new List<Asiento>();
+                        }
+                        compra.Asientos.Add(newAsiento);
+                    }
+                    return View(compra);
+                }
             }
         }
 
