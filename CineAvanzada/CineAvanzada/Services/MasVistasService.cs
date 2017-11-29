@@ -81,7 +81,7 @@ namespace CineAvanzada.Services
                 lista[0] = segunda;
                 lista[1] = primera;
             }
-            if(lista[0].EntradasVendidas < tercera.EntradasVendidas)
+            if (lista[0].EntradasVendidas < tercera.EntradasVendidas)
             {
                 lista[2] = lista[1];
                 lista[1] = lista[0];

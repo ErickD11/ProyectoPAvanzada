@@ -9,7 +9,7 @@ namespace CineAvanzada.Models
     {
         public Tanda Tanda { get; set; }
         public Pelicula Pelicula { get; set; }
-        public int EntradasAdulto  { get; set; }
+        public int EntradasAdulto { get; set; }
         public int EntradasNino { get; set; }
         public int EntradasAdultoMayor { get; set; }
         public int TotalEntradas { get; set; }

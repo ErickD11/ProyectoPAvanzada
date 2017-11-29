@@ -38,7 +38,7 @@ namespace CineAvanzada.Services
             return CompraAsientos(tanda, newPelicula, conexion);
         }
 
-        public Compra CompraAsientos(Tanda tanda, Pelicula pelicula,SqlConnection conexion)
+        public Compra CompraAsientos(Tanda tanda, Pelicula pelicula, SqlConnection conexion)
         {
             conexion.Open();
             string sql = "select * from DetalleFactura where Tandas_idTanda = " + tanda.idTanda;
