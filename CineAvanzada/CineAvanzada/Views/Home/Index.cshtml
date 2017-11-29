@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="estilos.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="sss/sss.js"></script>
+
+
 	@Styles.Render("~/Content/css")
 	<script>
 		jQuery(function ($) {
@@ -29,7 +31,7 @@
 		<div class="slider-testimonial">
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/mechanic.jpg" alt="">
+					<img src="Imagenes/mechanic.jpg" alt="" width="350" height="200">
 					<p class="client-name">The Mechanic</p>
 				</div>
 				<div class="testimonial-text">
@@ -38,7 +40,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/crank.jpg" alt="">
+					<img src="Imagenes/crank.jpg" alt="" width="350" height="200">
 					<p class="client-name">Crank</p>
 				</div>
 				<div class="testimonial-text">
@@ -47,7 +49,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/TheForeigner.jpg" alt="">
+					<img src="Imagenes/TheForeigner.jpg" alt="" width="350" height="200">
 					<p class="client-name">The Foreigner</p>
 				</div>
 				<div class="testimonial-text">
@@ -56,7 +58,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/Jigsaw.jpg" alt="">
+					<img src="Imagenes/Jigsaw.jpg" alt="" width="350" height="200">
 					<p class="client-name">Jigsaw</p>
 				</div>
 				<div class="testimonial-text">
@@ -65,7 +67,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/Annabelle.jpg" alt="">
+					<img src="Imagenes/Annabelle.jpg" alt="" width="350" height="200">
 					<p class="client-name">Annabelle</p>
 				</div>
 				<div class="testimonial-text">
@@ -74,7 +76,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/it.jpg" alt="">
+					<img src="Imagenes/it.jpg" alt="" width="350" height="200">
 					<p class="client-name">It</p>
 				</div>
 				<div class="testimonial-text">
@@ -83,7 +85,7 @@
 			</div>
 			<div class="testimonial-item">
 				<div class="testimonial-client">
-					<img src="Imagenes/Piratas-del-Caribe-5-poster.jpg" alt="">
+					<img src="Imagenes/Piratas-del-Caribe-5-poster.jpg" alt="" width="350" height="200">
 					<p class="client-name"> Piratas del Caribe 5 </p>
 				</div>
 				<div class="testimonial-text">
@@ -91,6 +93,23 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+
+
+	<table class="table" align="center" border=1 frame="box" rules="all" cellspacing=1 cellpadding=1>
+		@foreach (var Pelicula in Model.Peliculas)
+		{
+			<tr>
+				<td style="border:hidden">
+					<img src=@Pelicula.Imagen width="250" height="200" />
+				</td>
+				<td style="border:hidden">
+					Nombre: @Pelicula.Nombre<br>
+					Sinopsis:<br>@Pelicula.Sinopsis<br>
+				</td>
+			</tr>
+		}
+	</table>
+	
 </body>
 </html>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CineAvanzada.Services;
+using CineAvanzada.Models;
 
 namespace CineAvanzada.Controllers
 {
@@ -10,8 +12,9 @@ namespace CineAvanzada.Controllers
 	{
 		public ActionResult Index()
 		{
-
-			return View();
+			var CarteleraService = new CarteleraService();
+			var model = CarteleraService.Cartelera();
+			return View(model);
 		}
 
 		public ActionResult About()

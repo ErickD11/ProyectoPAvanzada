@@ -6845,16 +6845,12 @@ td.visible-print {
   }
 }
 
-* {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
 
 body {
 	background: #fff;
+	margin:0;
+    padding:0;
+    height:100%;
 }
 
 .wrapper {
@@ -6862,10 +6858,12 @@ body {
 	margin-top: 100px;
 	background: #d2ddfc;
 	padding: 30px 0;
+	width: 100%;
+
 }
 
 .slider-testimonial {
-	width: 85%;
+	width: 100%;
 	max-width: 1400px;
 	margin: auto;
 }
