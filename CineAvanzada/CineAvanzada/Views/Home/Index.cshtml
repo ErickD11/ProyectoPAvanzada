@@ -14,6 +14,7 @@
 
 
 	@Styles.Render("~/Content/css")
+
 	<script>
 		jQuery(function ($) {
 			$('.slider-testimonial').sss({
@@ -27,89 +28,24 @@
 	<div align="center">
 		<img src="Imagenes/cinema-division.jpg" alt="Error" width="350" height="200">
 	</div>
+
 	<div class="wrapper">
 		<div class="slider-testimonial">
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/mechanic.jpg" alt="" width="350" height="200">
-					<p class="client-name">The Mechanic</p>
+			@foreach (var Pelicula in Model.Peliculas)
+			{
+				<div class="testimonial-item">
+					<div class="testimonial-client">
+						<img src=@Pelicula.Imagen width="250" height="200" />
+						<p class="client-name"> Nombre: @Pelicula.Nombre<br> </p>
+					</div>
+					<div class="testimonial-text">
+						<p>Sinopsis:<br>@Pelicula.Sinopsis<br></p>
+					</div>
 				</div>
-				<div class="testimonial-text">
-					<p> Arthur Bishop (Jason Statham) es un asesino profesional de élite, con un estricto código y un talento único para eliminar limpiamente a cada una de sus víctimas. La muerte de su amigo y mentor Harry (Donald Sutherland) le obligará a replantearse sus métodos, sobre todo cuando Steve (Ben Foster), el hijo de Harry, le pida ayuda para saciar su sed de venganza. Bishop empieza a entrenar a Steve y a enseñarle sus letales técnicas, pero las mentiras y los engaños amenazan con convertir esta alianza en el mayor de sus errores.</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/crank.jpg" alt="" width="350" height="200">
-					<p class="client-name">Crank</p>
-				</div>
-				<div class="testimonial-text">
-					<p> Chev Chelios (Jason Statham), un asesino a sueldo de Los Ángeles, ha sido envenenado mientras dormía y que sólo le queda una hora de vida. La única oportunidad que tiene Chev de sobrevivir es mantenerse en movimiento para impedir que el veneno le llegue al corazón. El tiempo pasa y corre enloquecido por las calles de Los Ángeles para salvar a su novia y encontrar un antídoto que le salve la vida.</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/TheForeigner.jpg" alt="" width="350" height="200">
-					<p class="client-name">The Foreigner</p>
-				</div>
-				<div class="testimonial-text">
-					<p>Quan (Jackie Chan) es el propietario de un restaurante chino en Londres. Quan será víctima de un atentado orquestado por el grupo paramilitar irlandés IRA, donde su hija moraría y el decidirá vengarse.</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/Jigsaw.jpg" alt="" width="350" height="200">
-					<p class="client-name">Jigsaw</p>
-				</div>
-				<div class="testimonial-text">
-					<p> La pelicula de Horror mas espera de todos los tiempos el Juego del Miedo data que En el año 2010, según el portal Bloody-disgusting, Lionsgate confirmó que si todo iba bien con el estreno de la séptima parte (en 3D), darían luz verde a la octava parte de la saga. La última secuela recaudó 137 M$ en todo el mundo, cifra superior a la alcanzada por las dos anteriores partes. Por otro lado, la actriz Betsy Russell declaró en el verano de aquel mismo año, en una entrevista concedida a un blog online del New York Post, que los guionistas de la séptima parte estaban escribiendo el guión de esta nueva secuela.</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/Annabelle.jpg" alt="" width="350" height="200">
-					<p class="client-name">Annabelle</p>
-				</div>
-				<div class="testimonial-text">
-					<p>Varios años después del trágico fallecimiento de su hija, un fabricante de muñecas y su mujer acogen en su hogar a una monja y varias niñas procedentes de un orfanato clausurado, quienes pronto se convierten en el objetivo de la poseída creación del fabricante de muñecas, Annabelle.</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/it.jpg" alt="" width="350" height="200">
-					<p class="client-name">It</p>
-				</div>
-				<div class="testimonial-text">
-					<p> Cuando empiezan a desparecer niños en el pueblo de Derry, Maine, un grupo de niños lidia con sus mayores miedos al enfrentarse a un malvado payaso llamado Pennywise, cuya historia de asesinatos y violencia data de siglos. Adaptación cinematográfica de la conocida novela de Stephen King “It”</p>
-				</div>
-			</div>
-			<div class="testimonial-item">
-				<div class="testimonial-client">
-					<img src="Imagenes/Piratas-del-Caribe-5-poster.jpg" alt="" width="350" height="200">
-					<p class="client-name"> Piratas del Caribe 5 </p>
-				</div>
-				<div class="testimonial-text">
-					<p>El capitán Jack Sparrow se enfrentará a un grupo de piratas-fantasma comandados por una de sus viejas némesis, el terrorífico capitán Salazar, recién escapado del Triángulo de las Bermudas. La única posibilidad de Sparrow para salir con vida es encontrar el legendario Tridente de Poseidón, un poderoso artefacto que le da a su poseedor el control de los mares.</p>
-				</div>
-			</div>
+			}
 		</div>
 	</div>
 
-
-	<table class="table" align="center" border=1 frame="box" rules="all" cellspacing=1 cellpadding=1>
-		@foreach (var Pelicula in Model.Peliculas)
-		{
-			<tr>
-				<td style="border:hidden">
-					<img src=@Pelicula.Imagen width="250" height="200" />
-				</td>
-				<td style="border:hidden">
-					Nombre: @Pelicula.Nombre<br>
-					Sinopsis:<br>@Pelicula.Sinopsis<br>
-				</td>
-			</tr>
-		}
-	</table>
-	
 </body>
+
 </html>
