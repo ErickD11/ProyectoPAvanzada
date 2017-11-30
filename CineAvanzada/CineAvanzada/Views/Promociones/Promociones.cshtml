@@ -2,13 +2,7 @@
 @{
 	ViewBag.Title = "Promociones";
 }
-
 <h2>Promociones</h2>
-
-
-
-
-
 <html lang="en">
 <head>
 	<title>Bootstrap Example</title>
@@ -20,7 +14,6 @@
 	@Styles.Render("~/Content/css")
 </head>
 <body>
-
 	<div class="container">
 		<h2>Carousel Example</h2>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -30,9 +23,7 @@
 				<li data-target="#myCarousel" data-slide-to="1"></li>
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
-
 			<!-- Wrapper for slides -->
-			
 				@foreach (var Promocion in Model.ListaPromociones)
 				{
 					<div class="carousel-inner">
@@ -44,7 +35,6 @@
 									Descripcion: @Promocion.Descripcion<br>
 									Puntos Requeridos: @Promocion.PuntosRequeridos<br>
 								</p>
-
 								<div>
 									@foreach (var Tanda in Model.ListaTandas)
 									{
@@ -55,15 +45,11 @@
 
 										}
 									}
-
-
 								</div>
 							</div>
 						</div>
 					</div>
 				}
-					
-
 			<!-- Left and right controls -->
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				<span class="glyphicon glyphicon-chevron-left"></span>
@@ -75,7 +61,6 @@
 			</a>
 		</div>
 	</div>
-
 </body>
 </html>
 
