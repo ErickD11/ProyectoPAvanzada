@@ -10,8 +10,9 @@ namespace CineAvanzada.Controllers
 {
     public class PromocionesController : Controller
     {
-        // GET: Promociones
-        public ActionResult Promociones()
+		// GET: Promociones
+		[Authorize]
+		public ActionResult Promociones()
         {
 
 			var Prom = new PromocionService();
