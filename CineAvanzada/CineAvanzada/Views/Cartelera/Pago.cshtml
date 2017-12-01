@@ -11,6 +11,7 @@
             $("#cedula").mask('9-9999-9999');
             $("#numTarjeta").mask('9999 9999 9999 9999');
             $("#codTarjeta").mask('9999');
+            $("#fechaVencimiento").mask('99/9999');
         });
     </script>
     <script type="text/javascript">
@@ -44,7 +45,7 @@
                         &nbsp;Asiento: @Asiento.idAsiento<br />
                     </p>
                 }
-                </p>
+            </p>
                 <h2>Precio Total: ₡ @Model.PrecioTotal</h2>
             </div>
             <br><br>
@@ -69,6 +70,9 @@
                     <br />
                     <label>Codigo de seguridad: </label>
                     <input type="text" name="codTarjeta" id="codTarjeta" required />
+                    <br />
+                    <label>Fecha Vencimiento: &nbsp;&nbsp;</label>
+                    <input type="text" name="fechaVencimiento" id="fechaVencimiento" required/>
                     <br /><br />
                     <button type="submit" class="btn btn-primary">Realizar Compra</button>
                 }

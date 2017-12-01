@@ -26,7 +26,6 @@
 
 </head>
 <body>
-
 	<div class="wrapper">
 		<div class="slider-testimonial">
 			@foreach (var Promocion in Model.ListaPromociones)
@@ -36,16 +35,14 @@
 						<img src=@Promocion.Imagen width="250" height="200" />
 						<p class="client-name"> Nombre: @Promocion.Nombre<br> </p>
 					</div>
-
 					<div class="testimonial-text">
 						<p>Descripcion:<br>@Promocion.Descripcion<br></p>			
 					</div>
 				</div>
+                
 			}
 		</div>
 	</div>
-	
-
 </body>
 </html>
 
