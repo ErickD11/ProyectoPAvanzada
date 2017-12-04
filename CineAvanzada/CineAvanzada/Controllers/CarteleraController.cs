@@ -20,12 +20,12 @@ namespace CineAvanzada.Controllers
             return View(model);
         }
 
-        public ActionResult CantidadEntradas(Tanda tanda)
+        public ActionResult CantidadEntradas(Tanda tanda, int descuento, bool Promocion, int PuntosMenos)
         {
             if (tanda != null)
             {
                 var CompraService = new CompraService();
-                compra = CompraService.Compra(tanda);
+                compra = CompraService.Compra(tanda, descuento, Promocion, PuntosMenos);
                 return View(compra);
             }
             else
@@ -61,7 +61,7 @@ namespace CineAvanzada.Controllers
                 }
                 else
                 {
-                    int precioTotal = (CantidadAdultos * compra.Tanda.PrecioAdulto) + (CantidadNinos * compra.Tanda.PrecioNino) + (CantidadAdultosMayores * compra.Tanda.PrecioAdultoMayor);
+                    int precioTotal = ((CantidadAdultos * compra.Tanda.PrecioAdulto) + (CantidadNinos * compra.Tanda.PrecioNino) + (CantidadAdultosMayores * compra.Tanda.PrecioAdultoMayor)) - (compra.Descuento * totalEntradas);
                     compra.TotalEntradas = totalEntradas;
                     compra.EntradasAdulto = CantidadAdultos;
                     compra.EntradasNino = CantidadNinos;
@@ -120,7 +120,7 @@ namespace CineAvanzada.Controllers
             }
         }
 
-        public ActionResult Factura(string nombre, string cedula)
+        public ActionResult Factura(string nombre, string cedula, string usuario)
         {
             if (compra == null || nombre == null || cedula == null)
             {
@@ -131,7 +131,7 @@ namespace CineAvanzada.Controllers
                 compra.CedulaPersona = cedula;
                 compra.NombrePersona = nombre;
                 var Pago = new PagoService();
-                Pago.RealizarPago(compra);
+                Pago.RealizarPago(compra, usuario);
                 return View(compra);
             }
         }

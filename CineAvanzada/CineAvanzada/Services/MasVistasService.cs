@@ -43,7 +43,7 @@ namespace CineAvanzada.Services
 
         private List<MasVendida> MasVendiasBase()
         {
-            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conexion.Open();
             string sql = "select p.idPelicula,p.Nombre,p.Genero,p.Director,p.Duracion,p.FechaEstreno,p.Sinopsis,p.Imagen,count(d.Asientos_idAsiento)"
                         + " from Peliculas p, Tandas t, DetalleFactura d where d.Tandas_idTanda = t.idTanda AND t.Peliculas_idPelicula = p.idPelicula"

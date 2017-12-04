@@ -215,6 +215,7 @@
     <Compile Include="Services\MasVistasService.cs" />
     <Compile Include="Services\PagoService.cs" />
     <Compile Include="Services\PeliculasService.cs" />
+    <Compile Include="Services\PromocionesService.cs" />
     <Compile Include="Services\PromocionService.cs" />
     <Compile Include="Services\TandasService.cs" />
     <Compile Include="Startup.cs" />

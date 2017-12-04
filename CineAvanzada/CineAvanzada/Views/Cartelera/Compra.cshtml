@@ -83,11 +83,12 @@
                         {
                             <input class="boton_AsientoReservado" value="@contador" id="AsientoSalaOcupado" disabled />
                             contador++;
-                            if (bandera)
-                            {
-                                j++;
-                            }
+                            //if (bandera)
+                            //{
+                            //    j++;
+                            //}
                             bandera = true;
+                            break;
                         }
                     }
                     if (bandera == false)
@@ -124,11 +125,12 @@
                             {
                                 <input type="checkbox" name="asientos" value="@contador" disabled style="display:none" />
                                 contador++;
-                                if (bandera)
-                                {
-                                    j++;
-                                }
+                                //if (bandera)
+                                //{
+                                //    j++;
+                                //}
                                 bandera = true;
+                                break;
                             }
                         }
                         if (bandera == false)

@@ -11,9 +11,13 @@ namespace CineAvanzada.Services
 {
     public class PagoService
     {
-        public void RealizarPago(Compra compra)
+        public void RealizarPago(Compra compra, string usuario)
         {
-            using (SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
+            if (compra.Promocion)
+            {
+                QuitarPuntos(usuario, compra.PuntosMenos);
+            }
+            using (SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 foreach (Asiento asiento in compra.Asientos)
                 {
@@ -27,9 +31,11 @@ namespace CineAvanzada.Services
                         cmd.Parameters.Add(new SqlParameter("@NombrePersona", compra.NombrePersona));
                         cmd.Parameters.Add(new SqlParameter("@idTanda", compra.Tanda.idTanda));
                         cmd.Parameters.Add(new SqlParameter("@idAsiento", asiento.idAsiento));
+                        cmd.Parameters.Add(new SqlParameter("@idUser", usuario));
                         conexion.Open();
                         cmd.ExecuteNonQuery();
                         conexion.Close();
+                        usuario = "Ninguno";
                     }
                 }
             }
@@ -50,6 +56,22 @@ namespace CineAvanzada.Services
             conexion.Close();
             idFactura++;
             return idFactura;
+        }
+
+        private void QuitarPuntos(string idUsuario, int puntosMenos)
+        {
+            using (SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("QuitarPuntos", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@userId", idUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@puntos", puntosMenos));
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
         }
     }
 }

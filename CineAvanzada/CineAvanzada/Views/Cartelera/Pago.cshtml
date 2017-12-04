@@ -1,4 +1,5 @@
-﻿@model CineAvanzada.Models.Compra
+﻿@using Microsoft.AspNet.Identity
+@model CineAvanzada.Models.Compra
 @{
     ViewBag.Title = "Pago";
 }
@@ -52,28 +53,48 @@
             <div class="text-center">
                 @using (Html.BeginForm("Factura", "Cartelera"))
                 {
-                    <label>Digite su nombre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input type="text" name="nombre" required />
+                    <table align="center">
+                        <tr>
+                            <td><label>Digite su nombre:</label></td>
+                            <td><input type="text" name="nombre" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Digite su cedula:</label></td>
+                            <td><input type="text" name="cedula" id="cedula" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Seleccione la tarjeta:</label></td>
+                            <td>
+                                <select name="tarjetas">
+                                    <option value="Visa" selected>Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="American Express">American Express</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Numero de la tarjeta:</label></td>
+                            <td><input type="text" name="numTarjeta" id="numTarjeta" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Codigo de seguridad:</label></td>
+                            <td><input type="text" name="codTarjeta" id="codTarjeta" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha Vencimiento:</label></td>
+                            <td><input type="text" name="fechaVencimiento" id="fechaVencimiento" required /></td>
+                        </tr>
+                    </table>
                     <br />
-                    <label>Digite su cedula:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input type="text" name="cedula" id="cedula" required />
+                    if (Request.IsAuthenticated)
+                    {
+                        <input type="text" name="usuario" id="usuario" style="display:none" value="@User.Identity.GetUserId()"/>
+                    }
+                    else
+                    {
+                        <input type="text" name="usuario" id="usuario" style="display:none" value="Ninguno" />
+                    }
                     <br />
-                    <label>Seleccione la tarjeta:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <select name="tarjetas">
-                        <option value="Visa" selected>Visa</option>
-                        <option value="Mastercard">Mastercard</option>
-                        <option value="American Express">American Express</option>
-                    </select>
-                    <br />
-                    <label>Numero de la tarjeta:  </label>
-                    <input type="text" name="numTarjeta" id="numTarjeta" required />
-                    <br />
-                    <label>Codigo de seguridad: </label>
-                    <input type="text" name="codTarjeta" id="codTarjeta" required />
-                    <br />
-                    <label>Fecha Vencimiento: &nbsp;&nbsp;</label>
-                    <input type="text" name="fechaVencimiento" id="fechaVencimiento" required/>
-                    <br /><br />
                     <button type="submit" class="btn btn-primary">Realizar Compra</button>
                 }
             </div>

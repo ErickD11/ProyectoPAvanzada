@@ -13,7 +13,7 @@ namespace CineAvanzada.Services
     {
         public List<Pelicula> Peliculas()
         {
-            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conexion.Open();
             string sql = "select * from Peliculas where idPelicula in(select Peliculas_idPelicula from Tandas)";
             SqlDataAdapter adp = new SqlDataAdapter(sql, conexion);

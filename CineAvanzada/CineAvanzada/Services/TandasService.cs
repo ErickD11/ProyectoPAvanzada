@@ -13,7 +13,7 @@ namespace CineAvanzada.Services
     {
         public List<Tanda> Tandas()
         {
-            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conexion.Open();
             string sql = "select * from Tandas where AsientosDisponibles > 0";
             SqlDataAdapter adp = new SqlDataAdapter(sql, conexion);

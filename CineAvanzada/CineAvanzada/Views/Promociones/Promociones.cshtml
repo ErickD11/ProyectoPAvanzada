@@ -2,13 +2,7 @@
 @{
 	ViewBag.Title = "Promociones";
 }
-
 <h2>Promociones</h2>
-
-
-
-
-
 <html lang="en">
 <head>
 	<meta charset="utf-8" /><!-- este meta sirve para definir el charset a utf-8 y asi mostrar caracteres del idioma español -->
@@ -28,43 +22,54 @@
 			});
 		});
 	</script>
-
 </head>
 <body>
-
+    <div class="text-center">
+        <h2>@Model.PuntosUsuario puntos disponibles</h2>
+    </div>
 	<div class="wrapper">
 		<div class="slider-testimonial">
 			@foreach (var Promocion in Model.ListaPromociones)
 			{
 				<div class="testimonial-item">
-					<div class="testimonial-cl00000ient">
+					<div class="testimonial-cl00000ient text-center">
 						<img src=@Promocion.Imagen width="250" height="200" />
 						<p class="client-name"> Nombre: @Promocion.Nombre<br> </p>
 					</div>
-
 					<div class="testimonial-text">
 						<p>Descripcion: @Promocion.Descripcion<br></p>
 						<p>Puntos Requeridos: @Promocion.PuntosRequeridos<br></p>
-							<div>
-					@foreach (var Tanda in Model.ListaTandas)
-					{
-							if (Tanda.idTanda == Promocion.Tandas_idTanda)
-	                        {
-							<p>
-								<button type="submit" class="btn btn-primary">Fecha: @Tanda.Fecha</button><br>
-							</p>
-
-							}
-					}
-</div>
-
-</div>
-
+						@if (Promocion.PuntosRequeridos <= Model.PuntosUsuario)
+                        {
+                            <div class="text-center">
+                                @foreach (var Tanda in Model.ListaTandas)
+                                {
+                                    if (Tanda.idTanda == Promocion.Tandas_idTanda)
+                                    {
+                                        @Html.ActionLink(linkText: Tanda.Fecha.ToString(), actionName: "CantidadEntradas",
+                                    controllerName: "Cartelera", routeValues: new
+                                    {
+                                        idTanda = Tanda.idTanda,
+                                        Peliculas_idPelicula = Tanda.Peliculas_idPelicula,
+                                        Salas_idSala = Tanda.Salas_idSala,
+                                        Fecha = Tanda.Fecha,
+                                        AsientosDisponibles = Tanda.AsientosDisponibles,
+                                        PrecioAdulto = Tanda.PrecioAdulto,
+                                        PrecioNino = Tanda.PrecioNino,
+                                        PrecioAdultoMayor = Tanda.PrecioAdultoMayor,
+                                        descuento = Promocion.Descuento,
+                                        Promocion = true,
+                                        PuntosMenos = Promocion.PuntosRequeridos
+                                    }, htmlAttributes: new { @class = "btn btn-primary" })
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
 				</div>
 			}
 		</div>
 	</div>
-
 </body>
 </html>
 

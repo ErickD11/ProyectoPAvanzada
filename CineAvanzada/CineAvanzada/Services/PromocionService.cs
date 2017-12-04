@@ -14,7 +14,7 @@ namespace CineAvanzada.Services
 
 		public List<Promocion> Promociones()
 		{
-			SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+			SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 			conexion.Open();
 			string sql = "select * from Promociones";
 			SqlDataAdapter adp = new SqlDataAdapter(sql, conexion);

@@ -9,5 +9,6 @@ namespace CineAvanzada.Models
 	{
 		public List<Promocion> ListaPromociones { get; set; }
 		public List<Tanda> ListaTandas { get; set; }
+        public int PuntosUsuario { get; set; }
 	}
 }

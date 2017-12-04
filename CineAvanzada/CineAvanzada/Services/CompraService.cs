@@ -11,9 +11,9 @@ namespace CineAvanzada.Services
 {
     public class CompraService
     {
-        public Compra Compra(Tanda tanda)
+        public Compra Compra(Tanda tanda, int descuento, bool promocion, int puntosPromocion)
         {
-            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+            SqlConnection conexion = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conexion.Open();
             string sql = "select * from Peliculas where idPelicula = " + tanda.Peliculas_idPelicula;
             SqlDataAdapter adp = new SqlDataAdapter(sql, conexion);
@@ -35,10 +35,10 @@ namespace CineAvanzada.Services
                 };
             }
             conexion.Close();
-            return CompraAsientos(tanda, newPelicula, conexion);
+            return CompraAsientos(tanda, newPelicula, descuento, promocion, puntosPromocion, conexion);
         }
 
-        public Compra CompraAsientos(Tanda tanda, Pelicula pelicula, SqlConnection conexion)
+        public Compra CompraAsientos(Tanda tanda, Pelicula pelicula, int descuento, bool promocion, int puntosPromocion, SqlConnection conexion)
         {
             conexion.Open();
             string sql = "select * from DetalleFactura where Tandas_idTanda = " + tanda.idTanda;
@@ -64,7 +64,10 @@ namespace CineAvanzada.Services
                 EntradasAdultoMayor = 0,
                 TotalEntradas = 0,
                 PrecioTotal = 0,
-                AsientosReservados = Asientos
+                AsientosReservados = Asientos,
+                Descuento = descuento,
+                Promocion = promocion,
+                PuntosMenos = puntosPromocion
             };
             return Compra;
         }

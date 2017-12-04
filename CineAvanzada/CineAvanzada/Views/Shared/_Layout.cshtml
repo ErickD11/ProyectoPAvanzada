@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,7 +25,19 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Cartelera", "Cartelera", "Cartelera")</li>
-					<li>@Html.ActionLink("Promociones", "Promociones", "Promociones")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(linkText: "Promociones", actionName: "Promociones",
+                            controllerName: "Promociones", routeValues: new
+                            {
+                                idUsuario = User.Identity.GetUserId()
+                            }, htmlAttributes: new { })
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Promociones", "Promociones", "Promociones")</li>
+                    }
                     <li>@Html.ActionLink("Mas Vistas", "MasVistas", "MasVistas")</li>
 					<li>@Html.ActionLink("Salas", "Salas", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
